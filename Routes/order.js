@@ -1,6 +1,7 @@
 const express = require("express");
 const Order = require("../Models/Order");
 const router = express.Router();
+const isAuthenticated = require("../middleware/isAuthenticated");
 
 router.post("/order", async (req, res) => {
   try {
@@ -29,7 +30,7 @@ router.post("/order", async (req, res) => {
   }
 });
 
-router.get("/orders", async (req, res) => {
+router.get("/orders", isAuthenticated, async (req, res) => {
   try {
     const orders = await Order.find({});
     console.log(orders);
@@ -70,7 +71,7 @@ router.get("/orders/:id", async (req, res) => {
   }
 });
 
-router.put("/orders/:id", async (req, res) => {
+router.put("/orders/:id", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
