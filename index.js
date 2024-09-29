@@ -10,15 +10,16 @@ app.use(cors());
 
 const userRoutes = require("./Routes/user");
 const orderRoutes = require("./Routes/order");
+const productsRoutes = require("./Routes/product");
 
 app.use(userRoutes);
 app.use(orderRoutes);
+app.use(productsRoutes);
 
 app.all("*", (req, res) => {
-  return res.status(404).json("La page n'existe pas !");
+  return res.status(404).json("This page doesn't exist !");
 });
 
 app.listen(3000, () => {
-  // Mon serveur va écouter le port 3000
-  console.log("Server has started"); // Quand je vais lancer ce serveur, la callback va être appelée
+  console.log("Server has started");
 });
