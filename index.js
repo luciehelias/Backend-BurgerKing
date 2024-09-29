@@ -1,14 +1,21 @@
-const express = require("express"); // import du package express
-const app = express(); // création du serveur
+const express = require("express");
+const cors = require("cors");
 
-app.get("/", (req, res) => {
-  // route en GET dont le chemion est /
-  res.json({ message: "Hi" }); // réponse du serveur : {message : "Hi"}
-});
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/BurgerKing");
 
-app.get("/hello", (req, res) => {
-  // route en GET dont le chemin est /hello
-  res.json({ message: "Hello" });
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+const userRoutes = require("./Routes/user");
+const orderRoutes = require("./Routes/order");
+
+app.use(userRoutes);
+app.use(orderRoutes);
+
+app.all("*", (req, res) => {
+  return res.status(404).json("La page n'existe pas !");
 });
 
 app.listen(3000, () => {
