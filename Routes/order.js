@@ -29,8 +29,75 @@ router.post("/order", async (req, res) => {
   }
 });
 
-router.get("/orders", async (req, res) => {});
+router.get("/orders", async (req, res) => {
+  try {
+    const orders = await Order.find({});
+    console.log(orders);
 
-router.put("/orders", async (req, res) => {});
+    if (orders.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Aucune commande n'a été trouvée" });
+    }
+
+    return res.status(200).json({
+      message: "Toutes les commandes ont été trouvées",
+      orders: orders,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/orders/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const order = await Order.findById(id);
+
+    if (!order) {
+      return res
+        .status(400)
+        .json({ message: "Aucune commande ne correspond à cet id" });
+    }
+
+    return res.status(200).json({
+      message: "La commande a été trouvée",
+      order: order,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
+router.put("/orders/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({ message: "Le nouveau statut est requis" });
+    }
+
+    const order = await Order.findByIdAndUpdate(
+      id,
+      { status: status },
+      { new: true }
+    );
+
+    if (!order) {
+      return res
+        .status(404)
+        .json({ message: "Aucune commande ne correspond à cet id" });
+    }
+
+    return res.status(200).json({
+      message: "Le statut de la commande a été mis à jour avec succès",
+      order: order,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
 
 module.exports = router;
