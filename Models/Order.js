@@ -3,17 +3,13 @@ const mongoose = require("mongoose");
 const Order = mongoose.model("Order", {
   products: [
     {
-      name: {
-        type: String,
-      },
-      quantity: {
-        type: Number,
-      },
+      name: String,
+      quantity: Number,
+      price: Number,
     },
   ],
-  status: {
-    type: String,
-  },
+  totalAmount: Number,
+  status: String,
 });
 
 module.exports = Order;
