@@ -10,6 +10,9 @@ const Order = mongoose.model("Order", {
   ],
   totalAmount: Number,
   status: String,
+  orderNumber: {
+    type: Number,
+  },
 });
 
 module.exports = Order;

@@ -2,21 +2,28 @@ const express = require("express");
 const Order = require("../Models/Order");
 const router = express.Router();
 const isAuthenticated = require("../middleware/isAuthenticated");
+// const { v4: uuidv4 } = require("uuid");
 
 router.post("/order", async (req, res) => {
   try {
     const { products, totalAmount, status } = req.body;
 
+    // Vérifiez si toutes les informations nécessaires sont fournies
     if (!products || !totalAmount || !status) {
       return res
         .status(400)
         .json({ message: "Des informations sont manquantes" });
     }
 
+    const lastOrder = await Order.findOne().sort({ orderNumber: -1 });
+
+    const newOrderNumber = lastOrder ? lastOrder.orderNumber + 1 : 1;
+
     const newOrder = new Order({
       products: products,
       totalAmount: totalAmount,
       status: status,
+      orderNumber: newOrderNumber,
     });
 
     await newOrder.save();
@@ -26,6 +33,7 @@ router.post("/order", async (req, res) => {
       order: newOrder,
     });
   } catch (error) {
+    console.error("Erreur lors de la création de la commande :", error);
     return res.status(500).json({ message: error.message });
   }
 });
@@ -50,7 +58,7 @@ router.get("/orders", isAuthenticated, async (req, res) => {
   }
 });
 
-router.get("/orders/:id", async (req, res) => {
+router.get("/order/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -71,7 +79,7 @@ router.get("/orders/:id", async (req, res) => {
   }
 });
 
-router.put("/orders/:id", isAuthenticated, async (req, res) => {
+router.put("/order/:id", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
