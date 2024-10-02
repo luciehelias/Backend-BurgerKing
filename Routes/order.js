@@ -2,7 +2,6 @@ const express = require("express");
 const Order = require("../Models/Order");
 const router = express.Router();
 const isAuthenticated = require("../middleware/isAuthenticated");
-// const { v4: uuidv4 } = require("uuid");
 
 router.post("/order", async (req, res) => {
   try {
