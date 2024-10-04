@@ -1,23 +1,26 @@
+// Importation des modules nécessaires
 const express = require("express");
 const Order = require("../Models/Order");
 const router = express.Router();
 const isAuthenticated = require("../middleware/isAuthenticated");
 
+// Route pour créer une nouvelle commande
 router.post("/order", async (req, res) => {
   try {
     const { products, totalAmount, status } = req.body;
 
-    // Vérifiez si toutes les informations nécessaires sont fournies
+    // Vérification des informations manquantes
     if (!products || !totalAmount || !status) {
       return res
         .status(400)
         .json({ message: "Des informations sont manquantes" });
     }
 
+    // Récupération du dernier numéro de commande
     const lastOrder = await Order.findOne().sort({ orderNumber: -1 });
-
     const newOrderNumber = lastOrder ? lastOrder.orderNumber + 1 : 1;
 
+    // Création de la nouvelle commande
     const newOrder = new Order({
       products: products,
       totalAmount: totalAmount,
@@ -25,7 +28,7 @@ router.post("/order", async (req, res) => {
       orderNumber: newOrderNumber,
     });
 
-    await newOrder.save();
+    await newOrder.save(); // Sauvegarde de la commande
 
     return res.status(201).json({
       message: "Commande créée avec succès",
@@ -37,9 +40,10 @@ router.post("/order", async (req, res) => {
   }
 });
 
+// Route pour récupérer toutes les commandes
 router.get("/orders", isAuthenticated, async (req, res) => {
   try {
-    const orders = await Order.find({});
+    const orders = await Order.find({}); // Récupération des commandes
 
     if (orders.length === 0) {
       return res
@@ -56,11 +60,12 @@ router.get("/orders", isAuthenticated, async (req, res) => {
   }
 });
 
+// Route pour récupérer une commande par ID
 router.get("/order/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const order = await Order.findById(id);
+    const order = await Order.findById(id); // Recherche de la commande par ID
 
     if (!order) {
       return res
@@ -77,15 +82,18 @@ router.get("/order/:id", async (req, res) => {
   }
 });
 
+// Route pour mettre à jour le statut d'une commande
 router.put("/order/:id", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
 
+    // Vérification du statut requis
     if (!status) {
       return res.status(400).json({ message: "Le nouveau statut est requis" });
     }
 
+    // Mise à jour de la commande
     const order = await Order.findByIdAndUpdate(
       id,
       { status: status },
@@ -107,10 +115,11 @@ router.put("/order/:id", isAuthenticated, async (req, res) => {
   }
 });
 
+// Route pour supprimer toutes les commandes terminées
 router.delete("/orders/completed", isAuthenticated, async (req, res) => {
   try {
+    // Suppression des commandes terminées
     const result = await Order.deleteMany({ status: "Terminée" });
-    console.log(result);
 
     if (result.deletedCount === 0) {
       return res
@@ -128,4 +137,5 @@ router.delete("/orders/completed", isAuthenticated, async (req, res) => {
   }
 });
 
+// Exportation du routeur
 module.exports = router;
