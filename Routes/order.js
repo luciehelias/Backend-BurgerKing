@@ -40,7 +40,6 @@ router.post("/order", async (req, res) => {
 router.get("/orders", isAuthenticated, async (req, res) => {
   try {
     const orders = await Order.find({});
-    console.log(orders);
 
     if (orders.length === 0) {
       return res
@@ -105,6 +104,27 @@ router.put("/order/:id", isAuthenticated, async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete("/orders/completed", isAuthenticated, async (req, res) => {
+  try {
+    const result = await Order.deleteMany({ status: "Terminée" });
+    console.log(result);
+
+    if (result.deletedCount === 0) {
+      return res
+        .status(404)
+        .json({ message: "Aucune commande terminée à supprimer." });
+    }
+
+    return res.status(200).json({
+      message: `${result.deletedCount} commande(s) terminée(s) supprimée(s) avec succès`,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Erreur du serveur", error: error.message });
   }
 });
 
