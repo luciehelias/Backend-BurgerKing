@@ -93,19 +93,19 @@
     "name": "Petites frites",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062095/RNCP31114/BurgerKing-exam/Images/Petites%20frites.png",
     "price": 2.7,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Moyennes frites",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062096/RNCP31114/BurgerKing-exam/Images/Moyennes%20frites.png",
     "price": 3.3,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Grandes frites",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062096/RNCP31114/BurgerKing-exam/Images/Grandes%20frites.png",
     "price": 3.4,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Jus d'Orange Minute Maid® (33cl)",
@@ -117,37 +117,37 @@
     "name": "Chili Cheese (4)",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062094/RNCP31114/BurgerKing-exam/Images/Chili%20Cheese%20%284%29.png",
     "price": 4,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Chili Cheese (6)",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062095/RNCP31114/BurgerKing-exam/Images/Chili%20Cheese%20%286%29.png",
     "price": 5.6,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Chili Cheese (9)",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062096/RNCP31114/BurgerKing-exam/Images/Chili%20Cheese%20%289%29.png",
     "price": 6.8,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Onion Rings (4)",
     "image": "https://burgerkingfrance.twic.pics/img/products/e/3f/e3fc35c3-3790-4d7a-9c9a-0936e92fe60b_",
     "price": 1.9,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Onion Rings (6)",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062095/RNCP31114/BurgerKing-exam/Images/Onion%20Rings%20%286%29.png",
     "price": 2.7,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Onion Rings (9)",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062096/RNCP31114/BurgerKing-exam/Images/Onion%20Rings%20%289%29.png",
     "price": 3.6,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Sauce Ketchup",
@@ -345,7 +345,7 @@
     "name": "King Fries Cheddar & Bacon",
     "image": "https://burgerkingfrance.twic.pics/img/products/6/d9/6d92ab7c-e386-4499-a71e-65cf00acd8af_",
     "price": 4.3,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Double Cheese",
@@ -369,7 +369,7 @@
     "name": "King Fries Cheddar & Crispy Onions",
     "image": "https://burgerkingfrance.twic.pics/img/products/0/5d/05d3732b-1af4-4809-9769-24f318860fdc_",
     "price": 4.3,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Donut Chocolat Noisette.",
@@ -549,7 +549,7 @@
     "name": "[KINGDOM] - Moyennes frites",
     "image": "https://burgerkingfrance.twic.pics/img/products/e/ef/eefcae33-babe-4674-8be0-e6846d5cf1cb_",
     "price": 2.9,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Café Allongé",
@@ -561,13 +561,13 @@
     "name": "[KINGDOM] - Onion Rings (6)",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062095/RNCP31114/BurgerKing-exam/Images/%5BKINGDOM%5D%20-%20Onion%20Rings%20%286%29.png",
     "price": 2.5,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "(6) King Nuggets",
     "image": "https://res.cloudinary.com/lereacteur-apollo/image/upload/v1700062096/RNCP31114/BurgerKing-exam/Images/%286%29%20King%20Nuggets.png",
     "price": 6.3,
-    "category": "accompagnements"
+    "category": "autres"
   },
   {
     "name": "Chicken Louisiane Steakhouse",
