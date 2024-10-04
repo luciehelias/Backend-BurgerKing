@@ -4,9 +4,6 @@ const Order = require("../Models/Order");
 const router = express.Router();
 const isAuthenticated = require("../middleware/isAuthenticated");
 
-const cors = require("cors");
-app.use(cors());
-
 // Route pour créer une nouvelle commande
 router.post("/order", async (req, res) => {
   try {
