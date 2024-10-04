@@ -7,7 +7,12 @@ mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+);
 
 const userRoutes = require("./Routes/user");
 const orderRoutes = require("./Routes/order");
