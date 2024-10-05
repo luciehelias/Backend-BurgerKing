@@ -8,10 +8,11 @@ mongoose.connect(process.env.MONGODB_URI);
 const app = express();
 app.use(express.json());
 app.use(
-  cors({
-    origin: "https://leroidubiggyburger.netlify.app/",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  })
+  cors()
+  //   {
+  //   origin: "https://leroidubiggyburger.netlify.app/",
+  //   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  // }
 );
 
 const userRoutes = require("./Routes/user");
